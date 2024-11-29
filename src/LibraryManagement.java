@@ -10,7 +10,10 @@ public class LibraryManagement {
     private void run() {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
-
+        //creating singleton transaction class
+        Transaction trackingTransactions = Transaction.getTransaction(); 
+        
+        //repeating untill user choses to quit
         while (running) {
             System.out.println("===========================");
             System.out.println("Library Management System");
@@ -28,7 +31,7 @@ public class LibraryManagement {
             scanner.nextLine();
 
             switch (choice) {
-                case 1:
+                case 1: //Add a member
                     System.out.print("Enter member ID: ");
                     int id = scanner.nextInt();
                 	System.out.print("Enter member name: ");
@@ -40,7 +43,8 @@ public class LibraryManagement {
                     library.addMember(newMember);
                     System.out.println("Member added successfully.");
                     break;
-                case 2:
+                    
+                case 2: //Add a book
                     System.out.print("Enter book ID: ");
                     id = scanner.nextInt();
                 	System.out.print("Enter book title: ");
@@ -52,7 +56,8 @@ public class LibraryManagement {
                     library.addBook(newBook);
                     System.out.println("Book added to library successfully.");
                     break;
-                case 3:
+                    
+                case 3: //Borrow a book
                 	System.out.println("\n--- Available Members ---");
                     for (Member member : library.getMembers()) {
                         System.out.println(member.getId() + ". " + member.getName());
@@ -76,12 +81,13 @@ public class LibraryManagement {
                     Book book = library.findBookById(bookId);
 
                     if (member != null && book != null) {
-                    	Transaction.borrowBook(book, member);
+                    	trackingTransactions.borrowBook(book, member);
                     } else {
                         System.out.println("Invalid member or book ID.");
                     }
                     break;
-                case 4:
+                    
+                case 4: //return a book
                 	System.out.print("Enter member ID: ");
                     memberId = scanner.nextInt();
                     
@@ -94,12 +100,13 @@ public class LibraryManagement {
                     book = library.findBookById(bookId);
 
                     if (member != null && book != null) {
-                    	Transaction.returnBook(book, member);
+                    	trackingTransactions.returnBook(book, member);
                     } else {
                         System.out.println("Invalid member or book ID.");
                     }
                     break;
-                case 5:
+                    
+                case 5: //View borrowed books
                 	System.out.print("Enter member ID: ");
                     memberId = scanner.nextInt();
                     scanner.nextLine();
@@ -115,14 +122,17 @@ public class LibraryManagement {
                         System.out.println("Invalid member ID.");
                     }
                     break;
-                case 6:
-                	Transaction.displayTransactionHistory();
+                    
+                case 6: //view transaction history
+                	trackingTransactions.displayTransactionHistory(); //to fix later
                     break;
-                case 7:
+                    
+                case 7: //quit system
                     System.out.println("Exiting. Good Bye..");
                     running = false;
                     break;
-                default:
+                    
+                default: //Any incorect input
                     System.out.println("Invalid choice! Please try again.");
             }
         }
