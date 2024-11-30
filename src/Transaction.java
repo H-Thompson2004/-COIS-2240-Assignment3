@@ -63,7 +63,7 @@ public class Transaction {
     public void saveTransaction(String transactionDetails) {
     	try { 
     		//acssesing the file and making able to read the file
-    		FileWriter allTransactions = new FileWriter("transactionsRecorded.txt", true);
+    		FileWriter allTransactions = new FileWriter("transactions.txt", true);
     		BufferedWriter writer = new BufferedWriter(allTransactions);
     		
     		//recording the transaction
@@ -73,6 +73,23 @@ public class Transaction {
     	catch (IOException e) {
     	   e.printStackTrace(); //incase of error
     	}
-    	
+    }
+    
+    //method that dispays all transactions
+    public void displayTransactionHistory() {
+    	try {
+    	  //accsesing the file in a way we can read it
+  	      BufferedReader reader = new BufferedReader(new FileReader("transactions.txt"));
+  	      String line;
+  	      
+  	      //loops through the entire file, outputing the contents
+  	      while((line = reader.readLine()) != null) {
+  	        System.out.println(line);
+  	      }
+  	      reader.close();
+  	      
+  	    } catch (IOException e) {
+  	      e.printStackTrace(); //if a error occurs
+  	    }
     }
 }
