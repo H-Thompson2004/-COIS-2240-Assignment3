@@ -124,7 +124,7 @@ public class LibraryManagement {
                     break;
                     
                 case 6: //view transaction history
-                	trackingTransactions.displayTransactionHistory(); //to fix later
+                	trackingTransactions.displayTransactionHistory(); 
                     break;
                     
                 case 7: //quit system
