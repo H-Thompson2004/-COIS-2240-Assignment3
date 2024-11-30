@@ -40,8 +40,11 @@ public class LibraryManagement {
                     scanner.nextLine();
 
                     Member newMember = new Member(id, name);
-                    library.addMember(newMember);
-                    System.out.println("Member added successfully.");
+                    
+                    if(library.addMember(newMember) == true)
+                    	System.out.println("Member added successfully.");
+                    else
+                    	System.out.println("Member couldnt be added as they have a duplicate Id");
                     break;
                     
                 case 2: //Add a book
@@ -53,8 +56,12 @@ public class LibraryManagement {
                     scanner.nextLine();
 
                     Book newBook = new Book(id, title);
-                    library.addBook(newBook);
-                    System.out.println("Book added to library successfully.");
+                    
+                    //checking to see if trying to add the book was sucesefull
+                    if(library.addBook(newBook) == true)
+                    	System.out.println("Book added to library successfully.");
+                    else
+                    	System.out.println("Book couldnt be added as it has a duplicate Id");
                     break;
                     
                 case 3: //Borrow a book
