@@ -20,8 +20,12 @@ public class Transaction {
             book.borrowBook();
             member.borrowBook(book); 
             String transactionDetails = getCurrentDateTime() + " - Borrowing: " + member.getName() + " borrowed " + book.getTitle();
+            
+            saveTransaction(transactionDetails); //saving the transaction
+            
             System.out.println(transactionDetails);
             return true;
+            
         } else {
             System.out.println("The book is not available.");
             return false;
@@ -34,7 +38,11 @@ public class Transaction {
             member.returnBook(book);
             book.returnBook();
             String transactionDetails = getCurrentDateTime() + " - Returning: " + member.getName() + " returned " + book.getTitle();
+            
+            saveTransaction(transactionDetails); //saving the transaction
+            
             System.out.println(transactionDetails);
+            
         } else {
             System.out.println("This book was not borrowed by the member.");
         }
@@ -46,5 +54,8 @@ public class Transaction {
         return sdf.format(new Date());
     }
     
-    //
+    // method that records every transaction to a text file
+    public void saveTransaction(String transactionDetails) {
+    	
+    }
 }
