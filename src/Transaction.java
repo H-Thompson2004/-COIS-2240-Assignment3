@@ -1,4 +1,9 @@
 import java.text.SimpleDateFormat;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.FileReader;
 import java.util.Date;
 
 public class Transaction {
@@ -56,6 +61,18 @@ public class Transaction {
     
     // method that records every transaction to a text file
     public void saveTransaction(String transactionDetails) {
+    	try { 
+    		//acssesing the file and making able to read the file
+    		FileWriter allTransactions = new FileWriter("transactionsRecorded.txt", true);
+    		BufferedWriter writer = new BufferedWriter(allTransactions);
+    		
+    		//recording the transaction
+    		writer.write(transactionDetails + "\n");
+    		writer.close();
+    	}
+    	catch (IOException e) {
+    	   e.printStackTrace(); //incase of error
+    	}
     	
     }
 }
