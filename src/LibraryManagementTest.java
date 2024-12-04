@@ -1,23 +1,32 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.lang.reflect.Constructor;
 import org.junit.Test;
 
 public class LibraryManagementTest {
 	
-	/*
-	//unfinished 
 	@Test
-	public void testBookId() throws Exception {
-		Book validBook1 = new Book(100, "valid1");
-		Book validBook2 = new Book(999, "valid2");
-		Book nonValidBook1 = new Book(1000, "nonValid1");
-		Book nonValidBook2 = new Book(99, "nonValid2");
+	public void testBookId() {
+		//testing to see if the valid book cases do successed
+		try {
+			Book validBook1 = new Book(100, "valid1");
+			Book validBook2 = new Book(999, "valid2");
+		} catch (Exception e) {
+			fail("Test should of successed");
+		}
 		
-		throw new Exception("The Id value added is not valid (is not between 100 and 999");
+		//testing to see the non valid book cases fail
+		try {
+			Book nonValidBook1 = new Book(1000, "nonValid1");
+			Book nonValidBook2 = new Book(99, "nonValid2");
+			fail("Test sould of failed");
+		} catch (Exception e) {
+			System.out.println("The Id value added is not valid (is not between 100 and 999");
+		}
 	}
-	*/
 	
 	@Test
 	public void  testBorrowReturn() throws Exception {
@@ -47,8 +56,8 @@ public class LibraryManagementTest {
 	public void testSingletonTransaction() throws Exception {
 		Constructor<Transaction> constructor = Transaction.class.getDeclaredConstructor();
 		
+		//checking if the returned value of the constructor is 2 (aka, Transaction is a singleton class)
 		int returnedInterger = constructor.getModifiers();
-		
 		assertEquals(returnedInterger, 2);
 	}
 }
