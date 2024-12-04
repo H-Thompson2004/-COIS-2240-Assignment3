@@ -54,8 +54,13 @@ public class LibraryManagement {
                     String title = scanner.next();
                     
                     scanner.nextLine();
-
-                    Book newBook = new Book(id, title);
+                    Book newBook = null;
+                    
+					try {
+						newBook = new Book(id, title);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
                     
                     //checking to see if trying to add the book was sucesefull
                     if(library.addBook(newBook) == true)

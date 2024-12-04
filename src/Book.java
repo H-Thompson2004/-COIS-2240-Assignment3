@@ -3,10 +3,15 @@ public class Book {
     private String title;
     private boolean available;
 
-    public Book(int id, String title) {
-        this.id = id;
-        this.title = title;
-        this.available = true;
+    public Book(int id, String title) throws Exception { 
+    	//if the id is valid (aka it is true)
+    	if(isValidId(id) ) {
+            this.id = id;
+            this.title = title;
+            this.available = true;
+    	}
+    	else
+    		throw new Exception("The Id value added is not valid (is not between 100 and 999");
     }
 
     // Getter methods
