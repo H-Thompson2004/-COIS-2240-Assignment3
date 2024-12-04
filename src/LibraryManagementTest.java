@@ -1,5 +1,7 @@
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import java.lang.reflect.Constructor;
 import org.junit.Test;
 
 public class LibraryManagementTest {
@@ -16,6 +18,7 @@ public class LibraryManagementTest {
 		throw new Exception("The Id value added is not valid (is not between 100 and 999");
 	}
 	*/
+	
 	@Test
 	public void  testBorrowReturn() throws Exception {
 		Transaction transactions = Transaction.getTransaction(); 
@@ -38,5 +41,14 @@ public class LibraryManagementTest {
 		//making the thrid transaction, returning the same book again
 		boolean fourthTransaction = transactions.returnBook(testBook, testMember);
 		assertFalse(fourthTransaction); //checking to make sure we cant return the book again (aka is false)
+	}
+	
+	@Test
+	public void testSingletonTransaction() throws Exception {
+		Constructor<Transaction> constructor = Transaction.class.getDeclaredConstructor();
+		
+		int returnedInterger = constructor.getModifiers();
+		
+		assertEquals(returnedInterger, 2);
 	}
 }
